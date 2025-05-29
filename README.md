@@ -1,6 +1,7 @@
 # ⚡ Battery Optimization Explorer
 
 This is a Streamlit web application that simulates and optimizes the operation of a battery energy storage system (BESS) based on day-ahead electricity market prices.
+Access the app [here](https://battery-optimizer-app.streamlit.app/).
 
 ## 🔍 Overview
 
