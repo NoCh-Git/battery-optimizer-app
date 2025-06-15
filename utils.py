@@ -13,6 +13,7 @@ def load_and_preprocess_prices(uploaded_file):
     df["Price_EUR_per_kWh"] = df["Germany/Luxembourg [€/MWh] Original resolutions"] / 1000
     if not any(df["DateTime"].dt.year == 2023):
         raise ValueError("❌ The uploaded data does not contain any entries from the year 2023. All tests and optimizations are based on the year 2023. Please upload a file with data from 2023.")
+    df = df.set_index("DateTime")
     df = df["2023-01-01":"2023-12-31"] # Filter for the year 2023, if needed, change to any other year or modify the date range.
     df["Price_EUR_per_kWh"] = df["Price_EUR_per_kWh"].interpolate()
 
