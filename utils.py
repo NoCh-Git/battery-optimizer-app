@@ -11,9 +11,9 @@ def load_and_preprocess_prices(uploaded_file):
     # Access known columns
     df["DateTime"] = pd.to_datetime(df["Start date"], utc=True)
     df["Price_EUR_per_kWh"] = df["Germany/Luxembourg [€/MWh] Original resolutions"] / 1000
-
-    df = df.set_index("DateTime").sort_index()
-    df = df["2023-01-01":"2023-12-31"]
+    if not any(df["DateTime"].dt.year == 2023):
+        raise ValueError("❌ The uploaded data does not contain any entries from the year 2023. All tests and optimizations are based on the year 2023. Please upload a file with data from 2023.")
+    df = df["2023-01-01":"2023-12-31"] # Filter for the year 2023, if needed, change to any other year or modify the date range.
     df["Price_EUR_per_kWh"] = df["Price_EUR_per_kWh"].interpolate()
 
     return df[["Price_EUR_per_kWh"]]
