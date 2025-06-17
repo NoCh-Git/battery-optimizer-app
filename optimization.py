@@ -16,7 +16,8 @@ def rolling_optimize_battery(df, capacity, max_power, eff, grid_fee, degradation
         max_power (float): Max charge/discharge power in kW
         eff (float): Round-trip efficiency's square root (0 < eff ≤ 1)
         grid_fee (float): Grid import cost per kWh
-        degradation_cost (float): Degradation cost per kWh of throughput
+        degradation_cost (float): Degradation cost per kWh of throughput [in future iterations can be influenced by the number of cycles, and estimated lifetime]
+
     
     Returns:
         pd.DataFrame: Original df with added columns for charge, discharge, and SoC
